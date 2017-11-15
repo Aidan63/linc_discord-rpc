@@ -23,11 +23,7 @@ class Test
         DiscordRpc.presence({
             state   : 'default',
             details : 'Test details',
-            largeImageKey  : 'large_test', largeImageText : 'Large image text',
-            smallImageKey  : 'small_test', smallImageText : 'Small image text',
             startTimestamp : cast Date.now().getTime(), endTimestamp : cast Date.now().getTime() + 200,
-            matchSecret : 'matchSecret', joinSecret : 'joinSecret', spectateSecret : 'spectateSecret',
-            partyID : 'fake_id', partySize : 1, partyMax : 5 
         });
     }
 
