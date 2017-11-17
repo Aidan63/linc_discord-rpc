@@ -17,32 +17,37 @@ class DiscordRpc
 
     /**
      *  Called when discord has disconnected the program.
+     *  Int is the error code, String is the error message.
      */
     public static var onDisconnected : Int->String->Void;
 
     /**
      *  Called when an error occured.
+     *  Int is the error code, String is the error message.
      */
     public static var onError : Int->String->Void;
 
     /**
      *  Called when the user has joined a game through discord.
+     *  String is the join secret.
      */
     public static var onJoin : String->Void;
 
     /**
      *  Called when the user has spectated a game through discord.
+     *  String is the spectate secret.
      */
     public static var onSpectate : String->Void;
 
     /**
      *  Called when the user has recieved a join request.
+     *  JoinRequest contains the userID, username, and avatar of the user.
      */
     public static var onRequest : JoinRequest->Void;
 
     /**
-     *  [Description]
-     *  @param _options - 
+     *  Attempts to connect to discord and initialize itself.
+     *  @param _options - Anonymouse structure containin the start options.
      */
     public static function start(_options : DiscordStartOptions)
     {
@@ -56,20 +61,20 @@ class DiscordRpc
     }
 
     /**
-     *  [Description]
+     *  Call this to process any callbacks.
      */
     public static function process() { DiscordRpcExterns.process(); }
 
     /**
-     *  [Description]
-     *  @param _userID - 
-     *  @param _response - 
+     *  Respond to a join request.
+     *  @param _userID - The userID of the user who requested to join.
+     *  @param _response - The reply to the request.
      */
     public static function respond(_userID : String, _response : Reply) { DiscordRpcExterns.respond(_userID, _response); }
 
     /**
-     *  [Description]
-     *  @param _options - 
+     *  Set the rich presence for discord.
+     *  @param _options - All of the rich presence options.
      */
     public static function presence(_options : DiscordPresenceOptions)
     {
@@ -84,7 +89,7 @@ class DiscordRpc
     }
 
     /**
-     *  [Description]
+     *  Stops rich presence content from showing.
      */
     public static function shutdown() { DiscordRpcExterns.shutdown(); }
 }
