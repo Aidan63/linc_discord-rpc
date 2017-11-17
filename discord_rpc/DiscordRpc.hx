@@ -5,8 +5,6 @@ import cpp.Function;
 import cpp.ConstCharStar;
 import cpp.RawConstPointer;
 import cpp.ConstPointer;
-import cpp.RawPointer;
-import cpp.Pointer;
 
 // PUBLIC FACING CLASS
 
@@ -160,7 +158,7 @@ private extern class DiscordRpcExterns
         if (DiscordRpc.onSpectate != null) DiscordRpc.onSpectate(_secret);
     private static inline function _onRequest(_data : RawConstPointer<ExternJoinRequst>) : Void {
         var data = ConstPointer.fromRaw(_data).value;
-        trace(data.userId, data.username, data.avatar);
+        if (DiscordRpc.onRequest != null) DiscordRpc.onRequest(new JoinRequest(data.userId, data.username, data.avatar));
     }
 }
 
@@ -171,9 +169,9 @@ private extern class DiscordRpcExterns
 @:structAccess
 private extern class ExternJoinRequst
 {
-    public var userId : String;
-    public var username : String;
-    public var avatar : String;
+    public var userId : ConstCharStar;
+    public var username : ConstCharStar;
+    public var avatar : ConstCharStar;
 }
 
 typedef VoidCallback    = Callable<Void->Void>;
