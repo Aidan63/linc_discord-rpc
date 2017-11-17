@@ -23,11 +23,6 @@ namespace linc
             handlers.spectateGame = _onSpectate;
             handlers.joinRequest  = _onRequest;
             Discord_Initialize(_clientID, &handlers, 1, _steamAppID);
-
-            // Test for request callback. Create a join request and send it to the callback function.
-            DiscordJoinRequest djr {"userID", "username", "avatar"};
-            printf("\n%s %s %s\n", djr.userId, djr.username, djr.avatar);
-            _onRequest(&djr);
         }
 
         void process()
