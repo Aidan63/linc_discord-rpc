@@ -36,9 +36,4 @@ class Test
     {
         trace('Disconnected! $_code : $_message');
     }
-
-    static function onRequest(_request : JoinRequest)
-    {
-        //trace('Join Request got', _request.userId, _request.username, _request.avatar);
-    }
 }
