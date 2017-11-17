@@ -1,7 +1,11 @@
+The lib/ folder libraries have their own licenses. Be sure to consult those accordingly.
+- lib/discord-rpc/LICENSE.md
+
 The MIT License (MIT)
 
-Copyright (c) 2015 Sven Bergström   
-Copyright (c) 2015 snõwkit contributors
+Copyright (c) 2017 Aidan Lee
+Copyright (c) 2017 Sven Bergström
+Copyright (c) 2017 snõwkit contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
