@@ -1,6 +1,6 @@
 -main Test.hx
 -cpp cpp/
--cp ../
+-cp ../../
 # pick a target
 
 #-D mac
