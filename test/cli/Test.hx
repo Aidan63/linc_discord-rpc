@@ -21,9 +21,10 @@ class Test
     static function onReady()
     {
         DiscordRpc.presence({
-            state   : 'default',
-            details : 'Test details',
-            startTimestamp : cast Date.now().getTime(), endTimestamp : cast Date.now().getTime() + 200,
+            details : 'Haxe Discord RPC Test App',
+            state   : 'DiscordRPC library accessable using hxcpp @:native externs',
+            largeImageKey  : 'logo_haxe',
+            largeImageText : 'Haxe'
         });
     }
 
