@@ -16,6 +16,12 @@
         <!-- add linker flags to the haxe build output -->
         <section if="linux">
             <lib name='${LINC_DISCORD_RPC_PATH}lib/discord-rpc/lib/linux64/libdiscord-rpc.a' if='HXCPP_M64'/>
+            <lib name='${LINC_DISCORD_RPC_PATH}lib/discord-rpc/lib/linux/libdiscord-rpc.a' if='HXCPP_M32'/>
+        </section>
+
+        <section if="windows">
+            <lib name='${LINC_DISCORD_RPC_PATH}lib/discord-rpc/lib/windows64/discord-rpc.lib' if='HXCPP_M64'/>
+            <lib name='${LINC_DISCORD_RPC_PATH}lib/discord-rpc/lib/windows/discord-rpc.lib' if='HXCPP_M32'/>
         </section>
 
     </target>
