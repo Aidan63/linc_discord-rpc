@@ -16,6 +16,8 @@ class Test
         {
             DiscordRpc.process();
         }
+
+        DiscordRpc.shutdown();
     }
 
     static function onReady()
