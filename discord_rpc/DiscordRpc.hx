@@ -176,6 +176,7 @@ private extern class ExternJoinRequst
 {
     public var userId : ConstCharStar;
     public var username : ConstCharStar;
+    public var discriminator : ConstCharStar;
     public var avatar : ConstCharStar;
 }
 
