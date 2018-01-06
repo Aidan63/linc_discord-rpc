@@ -1,7 +1,7 @@
 #pragma once
 
 #include <hxcpp.h>
-#include "../lib/discord-rpc/include/discord-rpc.h"
+#include "discord-rpc.h"
 
 namespace linc
 {
