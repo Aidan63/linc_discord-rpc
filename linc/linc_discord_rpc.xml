@@ -1,28 +1,48 @@
 <xml>
 
-    <!-- For a more in depth guide: https://github.com/snowkit/hxcpp-guide -->
+    <set name = "DISCORD-RPC" value = "${LINC_DISCORD_RPC_PATH}lib/discord-rpc" />
+    <set name = "RAPIDJSON"   value = "${LINC_DISCORD_RPC_PATH}lib/rapidjson" />
 
-    <files id='haxe'>
+    <files id = "haxe">
+        
+        <!-- Linc include and cpp file stuff -->
+        <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}linc/" />
+        <file name = "${LINC_DISCORD_RPC_PATH}linc/linc_discord_rpc.cpp" />
 
-        <!-- add files and flags to the haxe c++ build -->
+    </files>
 
-        <compilerflag value='-I${LINC_DISCORD_RPC_PATH}/linc/'/>
-        <file name='${LINC_DISCORD_RPC_PATH}linc/linc_discord_rpc.cpp' />
+    <files id = "discord-rpc-sources">
+        <compilerflag value='-I${DISCORD-RPC}/include/' />
 
+        <section if = "windows">
+            <file name = "${DISCORD-RPC}/src/connection_win.cpp" />
+            <file name = "${DISCORD-RPC}/src/discord_register_win.cpp" />
+        </section>
+
+        <section if = "mac">
+            <file name = "${DISCORD-RPC}/src/connection_unix.cpp" />
+            <file name = "${DISCORD-RPC}/src/discord_register_osx.m" />
+        </section>
+
+        <section if = "linux">
+            <file name = "${DISCORD-RPC}/src/connection_unix.cpp" />
+            <file name = "${DISCORD-RPC}/src/discord_register_linux.cpp" />
+        </section>
+
+        <file name = "${DISCORD-RPC}/src/discord-rpc.cpp" />
+        <file name = "${DISCORD-RPC}/src/rpc_connection.cpp" />
+        <file name = "${DISCORD-RPC}/src/serialization.cpp" />
+    </files>
+
+    <files id = "rapidjson-sources">
+        <compilerflag value='-I${RAPIDJSON}/include/rapidjson/' />
     </files>
 
     <target id="haxe">
 
         <!-- add linker flags to the haxe build output -->
-        <section if="linux">
-            <lib name='${LINC_DISCORD_RPC_PATH}lib/discord-rpc/lib/linux64/libdiscord-rpc.a' if='HXCPP_M64'/>
-            <lib name='${LINC_DISCORD_RPC_PATH}lib/discord-rpc/lib/linux/libdiscord-rpc.a' if='HXCPP_M32'/>
-        </section>
-
-        <section if="windows">
-            <lib name='${LINC_DISCORD_RPC_PATH}lib/discord-rpc/lib/windows64/discord-rpc.lib' if='HXCPP_M64'/>
-            <lib name='${LINC_DISCORD_RPC_PATH}lib/discord-rpc/lib/windows/discord-rpc.lib' if='HXCPP_M32'/>
-        </section>
+        <files id = "rapidjson-sources" />
+        <files id = "discord-rpc-sources" />
 
     </target>
     
