@@ -5,19 +5,15 @@
 
     <files id = "haxe">
         
-        <!-- Linc include and cpp file stuff -->
-        <compilerflag value='-I${DISCORD-RPC}/include/' />
-        <compilerflag value='-I${RAPIDJSON}/include/rapidjson/' />
+        <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}lib/discord-rpc/include/" />
+        <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}lib/rapidjson/include/" />
         <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}linc/" />
+        
         <file name = "${LINC_DISCORD_RPC_PATH}linc/linc_discord_rpc.cpp" />
 
-    </files>
-
-    <target id="haxe">
-
-        <!-- add linker flags to the haxe build output -->
-        <compilerflag value='-I${RAPIDJSON}/include/rapidjson/' />
-        <compilerflag value='-I${DISCORD-RPC}/include/' />
+        <file name = "${DISCORD-RPC}/src/discord-rpc.cpp" />
+        <file name = "${DISCORD-RPC}/src/rpc_connection.cpp" />
+        <file name = "${DISCORD-RPC}/src/serialization.cpp" />
 
         <section if = "windows">
             <file name = "${DISCORD-RPC}/src/connection_win.cpp" />
@@ -34,10 +30,35 @@
             <file name = "${DISCORD-RPC}/src/discord_register_linux.cpp" />
         </section>
 
+    </files>
+
+    <!--
+    <target id="haxe">
+
+        <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}lib/discord-rpc/include/" />
+        <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}lib/rapidjson/include/" />
+        <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}linc/" />
+
         <file name = "${DISCORD-RPC}/src/discord-rpc.cpp" />
         <file name = "${DISCORD-RPC}/src/rpc_connection.cpp" />
         <file name = "${DISCORD-RPC}/src/serialization.cpp" />
 
+        <section if = "windows">
+            <file name = "${DISCORD-RPC}/src/connection_win.cpp" />
+            <file name = "${DISCORD-RPC}/src/discord_register_win.cpp" />
+        </section>
+
+        <section if = "mac">
+            <file name = "${DISCORD-RPC}/src/connection_unix.cpp" />
+            <file name = "${DISCORD-RPC}/src/discord_register_osx.m" />
+        </section>
+
+        <section if = "linux">
+            <file name = "${DISCORD-RPC}/src/connection_unix.cpp" />
+            <file name = "${DISCORD-RPC}/src/discord_register_linux.cpp" />
+        </section>
+
     </target>
+    -->
     
 </xml>
