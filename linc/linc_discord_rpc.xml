@@ -6,12 +6,17 @@
     <files id = "haxe">
         
         <!-- Linc include and cpp file stuff -->
+        <compilerflag value='-I${DISCORD-RPC}/include/' />
+        <compilerflag value='-I${RAPIDJSON}/include/rapidjson/' />
         <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}linc/" />
         <file name = "${LINC_DISCORD_RPC_PATH}linc/linc_discord_rpc.cpp" />
 
     </files>
 
-    <files id = "discord-rpc-sources">
+    <target id="haxe">
+
+        <!-- add linker flags to the haxe build output -->
+        <compilerflag value='-I${RAPIDJSON}/include/rapidjson/' />
         <compilerflag value='-I${DISCORD-RPC}/include/' />
 
         <section if = "windows">
@@ -32,17 +37,6 @@
         <file name = "${DISCORD-RPC}/src/discord-rpc.cpp" />
         <file name = "${DISCORD-RPC}/src/rpc_connection.cpp" />
         <file name = "${DISCORD-RPC}/src/serialization.cpp" />
-    </files>
-
-    <files id = "rapidjson-sources">
-        <compilerflag value='-I${RAPIDJSON}/include/rapidjson/' />
-    </files>
-
-    <target id="haxe">
-
-        <!-- add linker flags to the haxe build output -->
-        <files id = "rapidjson-sources" />
-        <files id = "discord-rpc-sources" />
 
     </target>
     
