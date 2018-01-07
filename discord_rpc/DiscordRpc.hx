@@ -63,14 +63,20 @@ class DiscordRpc
     /**
      *  Call this to process any callbacks.
      */
-    public static function process() { DiscordRpcExterns.process(); }
+    public static function process()
+    {
+        DiscordRpcExterns.process();
+    }
 
     /**
      *  Respond to a join request.
      *  @param _userID - The userID of the user who requested to join.
      *  @param _response - The reply to the request.
      */
-    public static function respond(_userID : String, _response : Reply) { DiscordRpcExterns.respond(_userID, _response); }
+    public static function respond(_userID : String, _response : Reply)
+    {
+        DiscordRpcExterns.respond(_userID, _response);
+    }
 
     /**
      *  Set the rich presence for discord.
@@ -91,20 +97,9 @@ class DiscordRpc
     /**
      *  Stops rich presence content from showing.
      */
-    public static function shutdown() { DiscordRpcExterns.shutdown(); }
-}
-
-class JoinRequest
-{
-    public var userID(default, null) : String;
-    public var username(default, null) : String;
-    public var avatar(default, null) : String;
-
-    public function new(_userID : String, _username : String, _avatar : String)
+    public static function shutdown()
     {
-        userID   = _userID;
-        username = _username;
-        avatar   = _avatar;
+        DiscordRpcExterns.shutdown();
     }
 }
 
@@ -161,9 +156,9 @@ private extern class DiscordRpcExterns
         if (DiscordRpc.onJoin != null) DiscordRpc.onJoin(_secret);
     private static inline function _onSpectate(_secret : ConstCharStar) : Void
         if (DiscordRpc.onSpectate != null) DiscordRpc.onSpectate(_secret);
-    private static inline function _onRequest(_data : RawConstPointer<ExternJoinRequst>) : Void {
-        var data = ConstPointer.fromRaw(_data).value;
-        if (DiscordRpc.onRequest != null) DiscordRpc.onRequest(new JoinRequest(data.userId, data.username, data.avatar));
+    private static inline function _onRequest(_data : RawConstPointer<JoinRequest>) : Void {
+        var ptr = ConstPointer.fromRaw(_data);
+        if (DiscordRpc.onRequest != null) DiscordRpc.onRequest(ptr.value);
     }
 }
 
@@ -172,18 +167,19 @@ private extern class DiscordRpcExterns
 @:include('linc_discord_rpc.h')
 @:native('DiscordJoinRequest')
 @:structAccess
-private extern class ExternJoinRequst
+@:unreflective
+extern class JoinRequest
 {
-    public var userId : ConstCharStar;
-    public var username : ConstCharStar;
-    public var discriminator : ConstCharStar;
-    public var avatar : ConstCharStar;
+    public var userId : String;
+    public var username : String;
+    public var discriminator : String;
+    public var avatar : String;
 }
 
 typedef VoidCallback    = Callable<Void->Void>;
 typedef ErrorCallback   = Callable<Int->ConstCharStar->Void>;
 typedef SecretCallback  = Callable<ConstCharStar->Void>;
-typedef RequestCallback = Callable<RawConstPointer<ExternJoinRequst>->Void>;
+typedef RequestCallback = Callable<RawConstPointer<JoinRequest>->Void>;
 
 typedef DiscordStartOptions = {
     var clientID : String;
