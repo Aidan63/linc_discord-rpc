@@ -3,12 +3,6 @@
     <set name = "DISCORD-RPC" value = "${LINC_DISCORD_RPC_PATH}lib/discord-rpc" />
     <set name = "RAPIDJSON"   value = "${LINC_DISCORD_RPC_PATH}lib/rapidjson" />
 
-    <section id = "vars">
-
-        <set name = "NO_PRECOMPILED_HEADERS" value = "1" />
-
-    </section>
-
     <files id = "haxe">
         
         <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}lib/discord-rpc/include/" />
@@ -37,28 +31,5 @@
         </section>
 
     </files>
-
-    <target id = "haxe">
-
-        <file name = "${DISCORD-RPC}/src/discord-rpc.cpp" />
-        <file name = "${DISCORD-RPC}/src/rpc_connection.cpp" />
-        <file name = "${DISCORD-RPC}/src/serialization.cpp" />
-
-        <section if = "windows">
-            <file name = "${DISCORD-RPC}/src/connection_win.cpp" />
-            <file name = "${DISCORD-RPC}/src/discord_register_win.cpp" />
-        </section>
-
-        <section if = "mac">
-            <file name = "${DISCORD-RPC}/src/connection_unix.cpp" />
-            <file name = "${DISCORD-RPC}/src/discord_register_osx.m" />
-        </section>
-
-        <section if = "linux">
-            <file name = "${DISCORD-RPC}/src/connection_unix.cpp" />
-            <file name = "${DISCORD-RPC}/src/discord_register_linux.cpp" />
-        </section>
-
-    </target>
     
 </xml>
