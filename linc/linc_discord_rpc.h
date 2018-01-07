@@ -1,4 +1,7 @@
 #pragma once
+#ifdef _WIN32
+    #pragma comment(lib, "advapi32")
+#endif
 
 #include <hxcpp.h>
 #include "../lib/discord-rpc/include/discord-rpc.h"
