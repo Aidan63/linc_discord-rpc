@@ -1,5 +1,5 @@
 {
-    "name" : "discord_rpc_externs",
+    "name" : "linc_discord-rpc",
     "license": "MIT",
     "description": "Haxe hxcpp @:native externs for Discord's rich presence library",
     "version" : "1.0.0",

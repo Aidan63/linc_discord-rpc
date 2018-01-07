@@ -1,4 +1,4 @@
-# Haxe Discord RPC Native Externs
+# Linc Discord-RPC
 
 Haxe/hxcpp @:native bindings for [discord-rpc](https://github.com/discordapp/discord-rpc)
 
@@ -10,7 +10,7 @@ This library only works with the Haxe cpp target.
 ---
 
 ## Install
-`haxelib git discord_rpc https://github.com/Aidan63/haxe-discord_rpc-externs`
+`haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc`
 
 ## Example Usage
 
