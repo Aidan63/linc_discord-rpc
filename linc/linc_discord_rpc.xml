@@ -3,6 +3,12 @@
     <set name = "DISCORD-RPC" value = "${LINC_DISCORD_RPC_PATH}lib/discord-rpc" />
     <set name = "RAPIDJSON"   value = "${LINC_DISCORD_RPC_PATH}lib/rapidjson" />
 
+    <section id = "vars">
+
+        <set name = "NO_PRECOMPILED_HEADERS" value = "1" />
+
+    </section>
+
     <files id = "haxe">
         
         <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}lib/discord-rpc/include/" />
@@ -32,12 +38,7 @@
 
     </files>
 
-    <!--
-    <target id="haxe">
-
-        <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}lib/discord-rpc/include/" />
-        <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}lib/rapidjson/include/" />
-        <compilerflag value = "-I${LINC_DISCORD_RPC_PATH}linc/" />
+    <target id = "haxe">
 
         <file name = "${DISCORD-RPC}/src/discord-rpc.cpp" />
         <file name = "${DISCORD-RPC}/src/rpc_connection.cpp" />
@@ -59,6 +60,5 @@
         </section>
 
     </target>
-    -->
     
 </xml>
