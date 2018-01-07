@@ -1,6 +1,9 @@
 {
     "name" : "linc_discord-rpc",
     "license": "MIT",
+    "tags": [
+        "cross", "cpp", "native", "extern", "game"
+    ],
     "description": "Haxe hxcpp @:native externs for Discord's rich presence library",
     "version" : "1.0.0",
     "releasenote": "Initial release",

@@ -1,4 +1,4 @@
-# Linc Discord-RPC
+# linc/discord-RPC
 
 Haxe/hxcpp @:native bindings for [discord-rpc](https://github.com/discordapp/discord-rpc)
 
