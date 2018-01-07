@@ -7,12 +7,12 @@ namespace linc
     namespace discord_rpc
     {
         void init(const char* _clientID, const char* _steamAppID,
-            VoidCallback _onReady,
-            ErrorCallback _onDisconnected,
-            ErrorCallback _onError,
-            SecretCallback _onJoin,
-            SecretCallback _onSpectate,
-            JoinRequestCallback _onRequest)
+            void (*_onReady)(),
+            void (*_onDisconnected)(int errorCode, const char* message),
+            void (*_onError)(int errorCode, const char* message),
+            void (*_onJoin)(const char* joinSecret),
+            void (*_onSpectate)(const char* spectateSecret),
+            void (*_onRequest)(const DiscordJoinRequest* request))
         {
             DiscordEventHandlers handlers;
             memset(&handlers, 0, sizeof(handlers));

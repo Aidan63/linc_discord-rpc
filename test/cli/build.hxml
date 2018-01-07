@@ -1,5 +1,5 @@
 -main Test.hx
--cpp cpp/
+-cpp cpp
 -cp ../../
 # pick a target
 
