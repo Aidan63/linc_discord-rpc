@@ -3,6 +3,12 @@
     <set name = "DISCORD-RPC" value = "${LINC_DISCORD_RPC_PATH}lib/discord-rpc" />
     <set name = "RAPIDJSON"   value = "${LINC_DISCORD_RPC_PATH}lib/rapidjson" />
 
+    <section id = "vars">
+
+        <set name = "NO_PRECOMPILED_HEADERS" value = "1" />
+
+    </section>
+
     <files id = "native-discord-rpc">
 
         <compilerflag value = "-I${DISCORD-RPC}/include/" />
