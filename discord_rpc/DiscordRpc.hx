@@ -157,8 +157,8 @@ private extern class DiscordRpcExterns
     private static inline function _onSpectate(_secret : ConstCharStar) : Void
         if (DiscordRpc.onSpectate != null) DiscordRpc.onSpectate(_secret);
     private static inline function _onRequest(_data : RawConstPointer<JoinRequest>) : Void {
-        var ptr = ConstPointer.fromRaw(_data);
-        if (DiscordRpc.onRequest != null) DiscordRpc.onRequest(ptr.value);
+        var star : cpp.Star<JoinRequest> = cast _data;
+        if (DiscordRpc.onRequest != null) DiscordRpc.onRequest(star);
     }
 }
 
