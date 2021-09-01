@@ -43,7 +43,7 @@ class DiscordRpc
      *  Called when the user has recieved a join request.
      *  JoinRequest contains the userID, username, and avatar of the user.
      */
-    public static var onRequest : JoinRequest->Void;
+    public static var onRequest : DiscordJoinRequest->Void;
 
     /**
      *  Attempts to connect to discord and initialize itself.
@@ -158,7 +158,13 @@ private extern class DiscordRpcExterns
         if (DiscordRpc.onSpectate != null) DiscordRpc.onSpectate(_secret);
     private static inline function _onRequest(_data : RawConstPointer<JoinRequest>) : Void {
         var star : cpp.Star<JoinRequest> = cast _data;
-        if (DiscordRpc.onRequest != null) DiscordRpc.onRequest(star);
+        var request:DiscordJoinRequest = {
+            userId: star.userId,
+            username: star.username,
+            discriminator: star.discriminator,
+            avatar: star.avatar
+        };
+        if (DiscordRpc.onRequest != null) DiscordRpc.onRequest(request);
     }
 }
 
@@ -168,18 +174,25 @@ private extern class DiscordRpcExterns
 @:native('DiscordJoinRequest')
 @:structAccess
 @:unreflective
-extern class JoinRequest
+private extern class JoinRequest
 {
-    public var userId : String;
-    public var username : String;
-    public var discriminator : String;
-    public var avatar : String;
+    public var userId : ConstCharStar;
+    public var username : ConstCharStar;
+    public var discriminator : ConstCharStar;
+    public var avatar : ConstCharStar;
 }
 
 typedef VoidCallback    = Callable<Void->Void>;
 typedef ErrorCallback   = Callable<Int->ConstCharStar->Void>;
 typedef SecretCallback  = Callable<ConstCharStar->Void>;
 typedef RequestCallback = Callable<RawConstPointer<JoinRequest>->Void>;
+
+typedef DiscordJoinRequest = {
+    public var userId : String;
+    public var username : String;
+    public var discriminator : String;
+    public var avatar : String;
+}
 
 typedef DiscordStartOptions = {
     var clientID : String;
@@ -189,7 +202,7 @@ typedef DiscordStartOptions = {
     @:optional var onError        : Int->String->Void;
     @:optional var onJoin         : String->Void;
     @:optional var onSpectate     : String->Void;
-    @:optional var onRequest      : JoinRequest->Void;
+    @:optional var onRequest      : DiscordJoinRequest->Void;
 }
 
 typedef DiscordPresenceOptions = {
